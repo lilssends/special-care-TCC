@@ -4,12 +4,23 @@ import { ArrowLeft, Droplet, Activity, Save, AlertCircle } from 'lucide-react'
 export default function MeasurementForm({ type, onBack, onSave }) {
   const isGlucose = type === 'glucose'
   
+  //Inserindo Correção para a data e hora Incorreta
+
+  const getLocalDateTime = () => {
+  const agora = new Date()
+  const offset = agora.getTimezoneOffset()
+
+  return new Date(agora.getTime() - (offset * 60000))
+    .toISOString()
+    .slice(0, 16)
+}
+
   const [formData, setFormData] = useState({
     value: '',
     systolic: '',
     diastolic: '',
     pulse: '',
-    date: new Date().toISOString().slice(0, 16),
+    date: getLocalDateTime(),
     notes: ''
   })
   const [error, setError] = useState('')
@@ -59,7 +70,7 @@ export default function MeasurementForm({ type, onBack, onSave }) {
         systolic: '',
         diastolic: '',
         pulse: '',
-        date: new Date().toISOString().slice(0, 16),
+        date: getLocalDateTime(),
         notes: ''
       })
       setSuccess(false)
