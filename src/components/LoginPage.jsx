@@ -25,7 +25,7 @@ export default function LoginPage({ onLogin, onGoToRegister }) {
 }
 
   const handleGoogleLogin = () => {
-    // Simulação de login com Google
+    // Simulação de login com Google testando a função de login sem integração real
     const googleUser = {
       name: 'Usuário Google',
       email: 'usuario@gmail.com',
